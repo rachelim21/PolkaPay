@@ -1,3 +1,3 @@
-# Basic Example with React-Router-Bootstrap
+# PolkaPay User View
 
-A simple [create-react-app](CRA-README.md) setup, showcasing how it works with React-Router-Bootstrap
+After the reader logs in, they will be able to view a dashboard with their purchased articles. It will show their 10 most recent articles.
