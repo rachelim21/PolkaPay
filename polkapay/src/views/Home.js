@@ -20,7 +20,7 @@ const Home = () => {
                 For microtransactions we use payment channels/rollups for higher scalability, lower fees, and higher gas efficiency.
                 </p>
                 <p>
-                    <Button variant="primary" className="mr-4" href="/publisher">Get started now</Button>
+                    <Button variant="primary" className="mr-4" href="/paywall">Get started now</Button>
                     <Button variant="outline-secondary" href="https://github.com/rachelim21/PolkaPay">View on Github</Button>
                 </p>
             </Container>

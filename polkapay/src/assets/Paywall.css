@@ -1,0 +1,64 @@
+.paywall-container {
+    background: #f5f5f5;
+    border: 1px solid lightgray;
+    box-shadow: 2px 2px 4px lightgray;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+}
+
+.paywall-top {
+    background: white;
+    padding: 1rem 2rem !important;
+}
+
+.paywall-top h2 {
+    margin-top: 1rem;
+}
+
+.paywall-top p {
+    position: relative;
+}
+
+.paywall-top p .already-subscribed {
+    position: absolute;
+    right: 0;
+}
+
+.paywall-content {
+    padding: 2rem !important;
+}
+
+.paywall-content h6 {
+    margin-bottom: 1.5rem;
+}
+
+.list-group-item {
+    background: none !important;
+}
+
+.price-card {
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+.price-card h6 {
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.price-card h4 {
+    margin-bottom: 2rem;
+}
+
+.price-card .original-price {
+    margin-right: 0.5rem;
+    text-decoration: line-through;
+}
+
+.price-card .actual-price {
+    font-weight: bold;
+}
+
+.price-card .btn {
+    text-transform: uppercase;
+}
