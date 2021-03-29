@@ -1,0 +1,18 @@
+.container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.navbar-nav .nav-link, .navbar-nav .dropdown {
+    margin-left: 1rem !important;
+}
+
+.jumbotron {
+    background: none !important;
+}
+
+@media (min-width: 576px) {
+    .jumbotron {
+        padding: 8rem !important;
+    }
+}
