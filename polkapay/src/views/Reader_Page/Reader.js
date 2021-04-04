@@ -1,60 +1,59 @@
 import React from 'react';
 import { MemoryRouter, Switch, Route } from 'react-router-dom';
-
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import { LinkContainer } from 'react-router-bootstrap';
 import Table from 'react-bootstrap/Table'
+import Carousel, { Dots } from '@brainhubeu/react-carousel';
+import '@brainhubeu/react-carousel/lib/style.css';
+import { autoplayPlugin }  from '@brainhubeu/react-carousel';
+import { slidesToShowPlugin } from '@brainhubeu/react-carousel';
+import '../../assets/Reader.css';
+import { useState } from 'react';
+import Slideshow from '../../components/Slideshow';
 
-import '../assets/Reader.css';
 
 //References: Used React-bootstrap library samples as starter code,
 //https://codesandbox.io/s/github/react-bootstrap/code-sandbox-examples/tree/master/basic-react-router
 //Tables: https://react-bootstrap.github.io/components/table/
+//Carousel: https://brainhubeu.github.io/react-carousel/
 
 const Recent = () => <span>Recent</span>;
-
 const Favorite = () => <span>Favorite</span>;
-
 const Free = () => <span>Free</span>;
 
 const Reader = () => (
   <MemoryRouter>
+    <h1 className="header">Welcome Back!</h1>
+    <h2 centered >Trending Articles</h2>
+    <Slideshow> </Slideshow>
     <Container className="p-4">
-      
-        <h1 className="header">PolkaPay</h1>
+    
         <h2>
           My Articles
           <Switch>
-            <Route path="/recent">
+            <Route path="/reader_recent">
               <Recent />
             </Route>
-            <Route path="/favorite">
+            <Route path="/reader_favorites">
               <Favorite />
             </Route>
-            <Route path="/free">
+            <Route path="/reader_free">
               <Free />
             </Route>
           </Switch>
         </h2>
         <h2>
-          
           <ButtonToolbar className="custom-btn-toolbar">
-            <LinkContainer to="/">
-              <Button>Recent</Button>
-            </LinkContainer>
-            <LinkContainer to="/about">
-              <Button>Favorite</Button>
-            </LinkContainer>
-            <LinkContainer to="/users">
-              <Button>Free</Button>
-            </LinkContainer>
+            <Button variant="primary" className="mr-4" href="/reader_recent">Recent</Button>
+            <Button variant="primary" className="mr-4" href="/reader_favorite">Favorite</Button>
+            <Button variant="primary" className="mr-4" href="/reader_free">Free</Button>
           </ButtonToolbar>
         </h2>
-
-
+  
+      
   <Table responsive bordered hover >
   <thead>
     <tr>
@@ -68,14 +67,14 @@ const Reader = () => (
   <tbody>
     <tr>
       <td>1</td>
-      <td>Covid-19: About a Third of U.S. Adults Have Received at Least One Dose of a Vaccine</td>
+      <td><a href ="https://www.nytimes.com/2021/04/03/health/coronavirus-variants-vaccines.html?action=click&module=Top%20Stories&pgtype=Homepage">Covid-19: About a Third of U.S. Adults Have Received at Least One Dose of a Vaccine</a></td>
       <td>3/27/21</td>
       <td>Sameer Yasir</td>
       <td>The New York Times </td>
     </tr>
     <tr>
       <td>2</td>
-      <td>Tesla will accept Bitcoin as payment, Elon Musk says</td>
+      <td><a href="https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html">Tesla will accept Bitcoin as payment, Elon Musk says</a></td>
       {//https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html 
       }
       <td>3/24/21</td>
@@ -84,8 +83,8 @@ const Reader = () => (
     </tr>
     <tr>
       <td>3</td>
-      <td>Tesla will accept Bitcoin as payment, Elon Musk says</td>
-      {//https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html 
+      <td><a href="https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html">Tesla will accept Bitcoin as payment, Elon Musk says</a></td>
+      {//<a href="https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html">
       }
       <td>3/24/21</td>
       <td>Ephrat Livni</td>
@@ -93,7 +92,7 @@ const Reader = () => (
     </tr>
     <tr>
       <td>4</td>
-      <td>Tesla will accept Bitcoin as payment, Elon Musk says</td>
+      <td><a href="https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html">Tesla will accept Bitcoin as payment, Elon Musk says</a></td>
       {//https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html 
       }
       <td>3/24/21</td>
@@ -102,7 +101,7 @@ const Reader = () => (
     </tr>
     <tr>
       <td>5</td>
-      <td>Tesla will accept Bitcoin as payment, Elon Musk says</td>
+      <td><a href="https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html">Tesla will accept Bitcoin as payment, Elon Musk says</a></td>
       {//https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html 
       }
       <td>3/24/21</td>
@@ -111,7 +110,7 @@ const Reader = () => (
     </tr>
     <tr>
       <td>6</td>
-      <td>Tesla will accept Bitcoin as payment, Elon Musk says</td>
+      <td><a href="https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html">Tesla will accept Bitcoin as payment, Elon Musk says</a></td>
       {//https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html 
       }
       <td>3/24/21</td>
@@ -120,7 +119,7 @@ const Reader = () => (
     </tr>
     <tr>
       <td>7</td>
-      <td>Tesla will accept Bitcoin as payment, Elon Musk says</td>
+      <td><a href="https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html">Tesla will accept Bitcoin as payment, Elon Musk says</a></td>
       {//https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html 
       }
       <td>3/24/21</td>
@@ -129,7 +128,7 @@ const Reader = () => (
     </tr>
     <tr>
       <td>8</td>
-      <td>Tesla will accept Bitcoin as payment, Elon Musk says</td>
+      <td><a href="https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html">Tesla will accept Bitcoin as payment, Elon Musk says</a></td>
       {//https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html 
       }
       <td>3/24/21</td>
@@ -138,7 +137,7 @@ const Reader = () => (
     </tr>
     <tr>
       <td>9</td>
-      <td>Tesla will accept Bitcoin as payment, Elon Musk says</td>
+      <td><a href="https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html">Tesla will accept Bitcoin as payment, Elon Musk says</a></td>
       {//https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html 
       }
       <td>3/24/21</td>
@@ -147,7 +146,7 @@ const Reader = () => (
     </tr>
     <tr>
       <td>10</td>
-      <td>Tesla will accept Bitcoin as payment, Elon Musk says</td>
+      <td><a href="https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html">Tesla will accept Bitcoin as payment, Elon Musk says</a></td>
       {//https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html 
       }
       <td>3/24/21</td>
@@ -157,11 +156,9 @@ const Reader = () => (
   </tbody>
 </Table>
 
-
-
-     
     </Container>
   </MemoryRouter>
+  
 
   
 );

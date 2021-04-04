@@ -12,9 +12,13 @@ import './assets/Home.css';
 
 // import views
 import Home from './views/Home';
-import Reader from './views/Reader';
+import Reader from './views/Reader_Page/Reader';
 import Publisher from './views/Publisher';
 import Paywall from './views/Paywall';
+import Reader_Recent from './views/Reader_Page/Reader_Recent';
+import Reader_Favorite from './views/Reader_Page/Reader_Favorite';
+import Reader_Free from './views/Reader_Page/Reader_Free';
+
 
 // import images
 import logo from './logo.png';
@@ -67,6 +71,15 @@ function App() {
           </Route>
           <Route path="/paywall">
             <Paywall />
+          </Route>
+          <Route path="/reader_recent">
+            <Reader_Recent />
+          </Route>
+          <Route path="/reader_favorite">
+            <Reader_Favorite />
+          </Route>
+          <Route path="/reader_free">
+            <Reader_Free />
           </Route>
           <Route path="/">
             <Home />
