@@ -85,6 +85,8 @@ To get a local copy up on your own computer and running follow these simple step
 2. Run the React server
     ```sh
     cd polkapay
+    npm install
+    npm i @brainhubeu/react-carousel
     yarn start
     ```
 
