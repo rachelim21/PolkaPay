@@ -21,3 +21,8 @@ If encounter error: role "postgres" does not exist:
 If encounter error: database "testdb" does not exist:
 `psql postgres`  
 `# CREATE DATABASE testdb;`
+
+## AWS RDS
+polkapay-db  
+postgres  
+polkapay
