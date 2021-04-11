@@ -17,7 +17,9 @@ function PriceCard(props) {
                     <p><span className="original-price">{props.original}</span>
                     <span className="actual-price">{props.actual}</span></p>
                 </Card.Text>
-                <Button variant="light" block>{props.button}</Button>
+                <Button variant="light" href="https://www.nytimes.com/2021/04/03/health/coronavirus-variants-vaccines.html?action=click&module=Top%20Stories&pgtype=Homepage" block>{props.button}</Button>
+             
+
             </Card.Body>
         </Card>
     );

@@ -25,11 +25,12 @@ const Paywall = () => {
       </Container>
       <Container className="paywall-content text-center">
           <h6>Support your big and local publishers. Buy this article through Polka Pay:</h6>
-          <Row className="justify-content-md-center"><Col xs lg="6"><PriceCard heading="Best Value" title="Gold" original="$26.99" actual="$16.99 per month" button="Get Gold" color=""></PriceCard></Col></Row>
+          <Row className="justify-content-md-center"><Col xs lg="6"><PriceCard heading="Best Value" title="Single Article"  actual="$0.99" button="Unlock Article through PolkaPay" color=""></PriceCard></Col></Row>
+          
           <h6>Or purchase a monthly subscription: Save money. No hassle. Cancel anytime.</h6>
         <Row>
           <Col>
-            <PriceCard heading="Best Value" title="Gold" original="$26.99" actual="$16.99 per month" button="Get Gold" color=""></PriceCard>
+            <PriceCard heading=" " title="Blue" original="$15.99" actual="$9.99 per month" button="Get Blue" color=""></PriceCard>
             <ListGroup variant="flush" className="text-left">
               <ListGroup.Item>Benefit 1</ListGroup.Item>
               <ListGroup.Item>Benefit 2</ListGroup.Item>
@@ -38,7 +39,7 @@ const Paywall = () => {
             </ListGroup>
           </Col>
           <Col>
-            <PriceCard heading="Best Value" title="Gold" original="$26.99" actual="$16.99 per month" button="Get Gold" color=""></PriceCard>
+            <PriceCard heading="" title="Gold" original="$26.99" actual="$19.99 per month" button="Get Gold" color=""></PriceCard>
             <ListGroup variant="flush" className="text-left">
               <ListGroup.Item>Benefit 1</ListGroup.Item>
               <ListGroup.Item>Benefit 2</ListGroup.Item>
@@ -49,7 +50,7 @@ const Paywall = () => {
             </ListGroup>
           </Col>
           <Col>
-            <PriceCard heading="Best Value" title="Gold" original="$26.99" actual="$16.99 per month" button="Get Gold" color=""></PriceCard>
+            <PriceCard heading="Best Value " title="Premium" original="$36.99" actual="$25.99 per month" button="Get Gold" color=""></PriceCard>
             <ListGroup variant="flush" className="text-left">
               <ListGroup.Item>Benefit 1</ListGroup.Item>
               <ListGroup.Item>Benefit 2</ListGroup.Item>
