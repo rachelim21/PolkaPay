@@ -1,0 +1,30 @@
+{
+  "name": "celer-substrate-demo-cli",
+  "version": "1.0.5",
+  "description": "Celer substrate demo cli",
+  "main": "outDir/src/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node ./outDir/src/index.js",
+    "lint": "tsc --noEmit --pretty"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@polkadot/api": "^2.7.2-0",
+    "celer-substrate-types": "^1.0.9",
+    "celer-substrate-utils": "^1.21.2",
+    "celer-types": "^1.0.4",
+    "commander": "^6.1.0"
+  },
+  "devDependencies": {
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^3.8.2"
+  },
+  "author": {
+    "name": "Celer",
+    "url": "https://github.com/celer-network/celer-substrate-client"
+  },
+  "license": "MIT"
+}

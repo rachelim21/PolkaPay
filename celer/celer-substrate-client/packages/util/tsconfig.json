@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+      "target": "es2017",
+      "module": "commonjs",
+      "jsx": "preserve",
+      "declaration": true,
+      "strict": true,
+      "noImplicitAny": true,
+      "noUnusedLocals": true,
+      "noImplicitReturns": true,
+      "moduleResolution": "node",
+      "allowSyntheticDefaultImports": true,
+      "esModuleInterop": true,
+      "baseUrl": ".",
+      "rootDir": ".",
+      "outDir": "./outDir",
+      "skipLibCheck": true,
+      "typeRoots": [
+        "./node_modules/@types"
+      ]
+    },
+    "exclude": [
+      "node_modules"
+    ]
+  }

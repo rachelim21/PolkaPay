@@ -1,0 +1,16 @@
+[workspace]
+members = [
+    'node',
+    'pallets/celer-pay',
+    'pallets/celer-pay/rpc',
+    'pallets/celer-pay/rpc/runtime-api',
+    'pallets/condition-caller',
+    'pallets/celer-contracts',
+    'pallets/celer-contracts/rpc',
+    'pallets/celer-contracts/rpc/runtime-api',
+    'pallets/mock-boolean-condition',
+    'pallets/mock-numeric-condition',
+    'runtime',
+]
+[profile.release]
+panic = 'unwind'

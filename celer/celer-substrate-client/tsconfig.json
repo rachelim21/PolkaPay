@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+      "target": "es2017",
+      "module": "commonjs",
+      "jsx": "preserve",
+      "declaration": true,
+      "strict": true,
+      "noImplicitAny": true,
+      "noUnusedLocals": true,
+      "noImplicitReturns": true,
+      "moduleResolution": "node",
+      "allowSyntheticDefaultImports": true,
+      "esModuleInterop": true,
+      "skipLibCheck": true
+    },
+    "exclude": [
+      "node_modules"
+    ]
+  }
