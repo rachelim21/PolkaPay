@@ -1,4 +1,7 @@
 @media all and (min-width: 480px) {
+  .header {
+    text-align: center;
+  }
   .SignIn {
     padding: 60px 0;
   }

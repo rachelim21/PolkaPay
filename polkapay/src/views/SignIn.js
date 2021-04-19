@@ -4,11 +4,13 @@ import Button from "react-bootstrap/Button";
 import '../assets/Publisher.css';
 import axios from "axios"
 import UserDataService from "../services/user.service";
-
+import { useHistory } from "react-router-dom";
+import { Container, Row, Col } from "react-bootstrap";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const history = useHistory();
   //const [userID, setUser] = useState()
 
   useEffect(() => {
@@ -49,22 +51,27 @@ export default function Login() {
     // then submit those values to backend to check against user database
     const userID = {email: email, password: password};
     
-    axios.post("/api/users", userID).then(data => {
-        console.log(userID);
-    })
+    // axios.post("/api/users", userID).then(data => {
+    //     console.log(userID);
+    // })
    // axios.get('api/users');
-    //UserDataService.create(userID);
+    UserDataService.create(userID);
     // set the state of the user
     //setUser(response.data)
     // store the user in localStorage
     localStorage.setItem('user', email)
     localStorage.setItem('password',password)
     localStorage.setItem('amount', 10)
+    history.push('/reader')
 
     console.log(userID)
   }
 
   return (
+    <Container>
+      <Row>
+        <Col md={3}></Col>
+        <Col md={6}>
     <div className="Login">
       <Form onSubmit={handleSubmit}>
         <Form.Group size="lg" controlId="email">
@@ -84,10 +91,14 @@ export default function Login() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </Form.Group>
-        <Button block size="lg" type="submit" disabled={!validateForm()}   href="/reader" >
+        <Button block size="lg" type="submit" disabled={!validateForm()} >
           Login
         </Button>
       </Form>
     </div>
+    </Col>
+    <Col md={3}></Col>
+    </Row>
+    </Container>
   );
 }

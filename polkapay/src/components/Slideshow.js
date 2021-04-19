@@ -38,7 +38,7 @@ return (
       <Carousel value={value}
         onChange={onChange} draggable={false} animationSpeed={500} arrows >
         
-        <img  src={image1}  />
+        <a href = {"/paywall"}><img  src={image1} /> </a>
         <img src={image2} />
         <img src={image3} />
         <img src={image4} />
