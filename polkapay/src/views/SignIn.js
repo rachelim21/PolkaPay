@@ -5,9 +5,11 @@ import '../assets/Publisher.css';
 import axios from "axios"
 import UserDataService from "../services/user.service";
 
+
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  //const [userID, setUser] = useState()
 
   useEffect(() => {
     console.log(email);
@@ -16,6 +18,23 @@ export default function Login() {
   useEffect(() => {
       console.log(password)
   }, [password])
+
+//   useEffect(() => {
+//     const loggedInUser = localStorage.getItem("user");
+//     if (loggedInUser) {
+//       const foundUser = JSON.parse(loggedInUser);
+//       setUser(foundUser);
+//     }
+//   }, []);
+
+  // logout the user
+//   const handleLogout = () => {
+//     setUser({});
+//     setEmail("");
+//     setPassword("");
+//     localStorage.clear();
+//   };
+
 
   function validateForm() {
     return email.length > 0 && password.length > 0;
@@ -30,13 +49,19 @@ export default function Login() {
     // then submit those values to backend to check against user database
     const userID = {email: email, password: password};
     
-    axios.post("api/users", userID).then(data => {
+    axios.post("/api/users", userID).then(data => {
         console.log(userID);
     })
    // axios.get('api/users');
     //UserDataService.create(userID);
-    //console.log('helloo');
+    // set the state of the user
+    //setUser(response.data)
+    // store the user in localStorage
+    localStorage.setItem('user', email)
+    localStorage.setItem('password',password)
+    localStorage.setItem('amount', 10)
 
+    console.log(userID)
   }
 
   return (
@@ -59,7 +84,7 @@ export default function Login() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </Form.Group>
-        <Button block size="lg" type="submit" disabled={!validateForm()}>
+        <Button block size="lg" type="submit" disabled={!validateForm()}   href="/reader" >
           Login
         </Button>
       </Form>
