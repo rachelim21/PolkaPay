@@ -7,25 +7,36 @@ import UserDataService from "../services/user.service";
 import { useHistory } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 
-export default function Login() {
+export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
-  const defaultUser = {
-    email: "",
-    password: "",
-    publisher: false,
-  };
-  const [user, setUser] = useState(defaultUser);
-  
-  const loggedInUser = localStorage.getItem("user");
-    if (loggedInUser && loggedInUser.email) {
-      console.log("You are already logged in!");
-      console.log(loggedInUser);
-      history.push('/');
-      // const foundUser = JSON.parse(loggedInUser);
-  //     setUser(foundUser);
-    }
+  //const [userID, setUser] = useState()
+
+  useEffect(() => {
+    console.log(email);
+  }, [email]);
+
+  useEffect(() => {
+      console.log(password)
+  }, [password])
+
+//   useEffect(() => {
+//     const loggedInUser = localStorage.getItem("user");
+//     if (loggedInUser) {
+//       const foundUser = JSON.parse(loggedInUser);
+//       setUser(foundUser);
+//     }
+//   }, []);
+
+  // logout the user
+//   const handleLogout = () => {
+//     setUser({});
+//     setEmail("");
+//     setPassword("");
+//     localStorage.clear();
+//   };
+
 
   function validateForm() {
     return email.length > 0 && password.length > 0;
@@ -34,22 +45,26 @@ export default function Login() {
   function handleSubmit(event) {
     event.preventDefault();
     console.log("YOU have submitted the form");
-    user.email = email;
-    user.password = password;
-    console.log(user);
+    console.log(email);
+    console.log(password)
     // upon form submit, get email and login values
     // then submit those values to backend to check against user database
+    const userID = {email: email, password: password};
     
     // axios.post("/users", userID).then(data => {
     //     console.log(userID);
     // })
    // axios.get('api/users');
-    // UserDataService.create(user);
+    UserDataService.create(userID);
     // set the state of the user
     //setUser(response.data)
     // store the user in localStorage
-    localStorage.setItem('user', JSON.stringify(user));
-    history.push('/');
+    localStorage.setItem('user', email)
+    localStorage.setItem('password',password)
+    localStorage.setItem('amount', 10)
+    history.push('/reader')
+
+    console.log(userID)
   }
 
   return (
@@ -58,7 +73,7 @@ export default function Login() {
         <Col md={3}></Col>
         <Col md={6}>
           <div className="Login">
-            <h2>Login</h2>
+            <h2>Register</h2>
             <Form onSubmit={handleSubmit}>
               <Form.Group size="lg" controlId="email">
                 <Form.Label>Email</Form.Label>
@@ -77,8 +92,17 @@ export default function Login() {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </Form.Group>
+
+              <Form.Group size="lg" controlId="password">
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </Form.Group>
               <Button block size="lg" type="submit" disabled={!validateForm()} >
-                Login
+                Register
               </Button>
             </Form>
           </div>
