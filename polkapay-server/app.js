@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const customAuthMiddleware = require('./middleware/custom_auth');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -22,6 +23,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
+
+// use the cookie-parser to help with auth token, 
+// it must come before the customAuthMiddleware
+app.use(cookieParser());
+app.use(customAuthMiddleware);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
