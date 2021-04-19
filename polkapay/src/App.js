@@ -40,14 +40,14 @@ function App() {
   const [user, setUser] = useState(defaultUser);
 
   // check if user logged in
-  // useEffect(() => {
+  useEffect(() => {
     const loggedInUser = localStorage.getItem("user");
     if (loggedInUser) {
       console.log("You are already logged in!");
       console.log(loggedInUser);
       setUser(JSON.parse(loggedInUser));
     }
-  // }, []);
+  }, []);
 
   // logout the user
   const handleLogout = () => {
