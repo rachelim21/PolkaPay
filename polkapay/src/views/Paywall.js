@@ -25,7 +25,8 @@ const Paywall = () => {
       </Container>
       <Container className="paywall-content text-center">
           <h6>Support your big and local publishers. Buy this article through Polka Pay:</h6>
-          <Row className="justify-content-md-center"><Col xs lg="6"><PriceCard heading="Best Value" title="Single Article"  actual="$0.99" button="Unlock Article through PolkaPay" color=""></PriceCard></Col></Row>
+          <Row className="justify-content-md-center"><Col xs lg="6"><PriceCard heading="Best Value" title="Single Article"  actual="$0.99" button="Unlock Article through PolkaPay"  color=""></PriceCard></Col></Row>
+          
           
           <h6>Or purchase a monthly subscription: Save money. No hassle. Cancel anytime.</h6>
         <Row>

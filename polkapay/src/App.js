@@ -18,6 +18,7 @@ import Paywall from './views/Paywall';
 import Reader_Recent from './views/Reader_Page/Reader_Recent';
 import Reader_Favorite from './views/Reader_Page/Reader_Favorite';
 import Reader_Free from './views/Reader_Page/Reader_Free';
+import SignIn from './views/SignIn';
 
 
 // import images
@@ -56,7 +57,7 @@ function App() {
                           <Dropdown.Item href="/reader">Reader</Dropdown.Item>
                           <Dropdown.Item href="/publisher">Publisher</Dropdown.Item>
                           <Dropdown.Divider />
-                          <Dropdown.Item href="/paywall">Sign Up</Dropdown.Item>
+                          <Dropdown.Item href="/SignIn">Sign In</Dropdown.Item>
                       </Dropdown.Menu>
                   </Dropdown>
               </Nav>
@@ -81,9 +82,14 @@ function App() {
           <Route path="/reader_free">
             <Reader_Free />
           </Route>
+          <Route path="/SignIn">
+            <SignIn />
+          </Route>
           <Route path="/">
             <Home />
           </Route>
+            
+          
         </Switch>
     </Router>
   );
