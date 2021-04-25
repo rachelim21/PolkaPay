@@ -12,20 +12,22 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const history = useHistory();
   const defaultUser = {
-    email: "",
-    password: "",
+    email: null,
+    password: null,
     publisher: false,
   };
   const [user, setUser] = useState(defaultUser);
   
-  const loggedInUser = localStorage.getItem("user");
-    if (loggedInUser && loggedInUser.email) {
+  // check if user logged in
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("user");
+    if (loggedInUser) {
       console.log("You are already logged in!");
       console.log(loggedInUser);
+      setUser(JSON.parse(loggedInUser));
       history.push('/');
-      // const foundUser = JSON.parse(loggedInUser);
-  //     setUser(foundUser);
     }
+  }, []);
 
   function validateForm() {
     return email.length > 0 && password.length > 0;
@@ -34,19 +36,12 @@ export default function Login() {
   function handleSubmit(event) {
     event.preventDefault();
     console.log("YOU have submitted the form");
+    // upon form submit, get email and login values
     user.email = email;
     user.password = password;
     console.log(user);
-    // upon form submit, get email and login values
     // then submit those values to backend to check against user database
-    
-    // axios.post("/users", userID).then(data => {
-    //     console.log(userID);
-    // })
-   // axios.get('api/users');
-    // UserDataService.create(user);
-    // set the state of the user
-    //setUser(response.data)
+    UserDataService.login(user);
     // store the user in localStorage
     localStorage.setItem('user', JSON.stringify(user));
     history.push('/');
@@ -54,7 +49,7 @@ export default function Login() {
 
   return (
     <Container>
-      <Row>
+      <Row className="mt-5">
         <Col md={3}></Col>
         <Col md={6}>
           <div className="Login">

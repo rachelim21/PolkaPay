@@ -73,6 +73,7 @@ function App() {
           user.email ? (
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="ml-auto">
+                  <Nav.Link href="/paywall">Paywall</Nav.Link>
                   <Dropdown title="Profile" id="basic-nav-dropdown" alignRight>
                       <Dropdown.Toggle variant="outline-secondary" id="dropdown-basic">
                           Profile
@@ -89,7 +90,7 @@ function App() {
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="ml-auto">
                   <Nav.Link href="/features">Features</Nav.Link>
-                  <Nav.Link href="/Paywall">Pricing</Nav.Link>
+                  <Nav.Link href="/pricing">Pricing</Nav.Link>
                   <Nav.Link href="https://github.com/rachelim21/PolkaPay">Documentation</Nav.Link>
                   <Dropdown title="Login" id="basic-nav-dropdown" alignRight>
                       <Dropdown.Toggle variant="outline-secondary" id="dropdown-basic">

@@ -9,7 +9,11 @@ class UserDataService {
     return http.get(`/users/${id}`);
   }
 
-  create(data) {
+  login(data) {
+    return http.post("/login", data);
+  }
+
+  register(data) {
     return http.post("/users", data);
   }
 
