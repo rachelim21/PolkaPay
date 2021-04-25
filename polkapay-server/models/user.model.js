@@ -1,3 +1,5 @@
+const bcrypt = require('bcrypt');
+
 module.exports = (sequelize, Sequelize) => {
   const User = sequelize.define("user", {
     email: {
@@ -19,8 +21,8 @@ module.exports = (sequelize, Sequelize) => {
     },
   });
 
-  User.associate = function(models) {
-    User.hasMany(models.AuthToken)
+  User.associate = function ({ AuthToken }) {
+    User.hasMany(AuthToken);
   };
 
   // This is a class method, it is not called on an individual

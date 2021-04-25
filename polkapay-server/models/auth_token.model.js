@@ -1,4 +1,4 @@
-module.exports = (sequelize, DataTypes) => {
+module.exports = (sequelize, Sequelize) => {
     
     const AuthToken = sequelize.define('AuthToken', {
         token: Sequelize.STRING

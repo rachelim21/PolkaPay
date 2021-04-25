@@ -1,14 +1,15 @@
-const express = require('express');
+const db = require("../models");
 const bcrypt = require('bcrypt');
-const router = express.Router();
-// grab the User model from the models folder, the sequelize
-// index.js file takes care of the exporting for us and the 
-// syntaxt below is called destructuring, its an es6 feature
-const { User } = require("../models");
+const User = db.users;
+const Op = db.Sequelize.Op;
+
 
 /* Register Route
 ========================================================= */
-router.post('/register', async (req, res) => {
+// Create and Save a new User
+exports.create = async (req, res) => {
+    console.log("REGISTERING NEW USER")
+    console.log(req.body)
 
     // hash the password provided by the user with bcrypt so that
     // we are never storing plain text passwords. This is crucial
@@ -29,14 +30,56 @@ router.post('/register', async (req, res) => {
       return res.json(data);
   
     } catch(err) {
-      return res.status(400).send(err);
+        console.log(err);
+        return res.status(400).send(err);
     }
+};
+
+// Retrieve all Users from the database.
+exports.findAll = (req, res) => {
   
-});
+};
+
+// Find all reader Users
+exports.findAllReaders = (req, res) => {
+  
+};
+
+// Find all publisher Users
+exports.findAllPublishers = (req, res) => {
+  
+};
+
+/* Me Route - get the currently logged in user
+========================================================= */
+// Find a single User with an id
+exports.findOne = (req, res) => {
+    if (req.user) {
+        return res.send(req.user);
+    }
+    res.status(404).send(
+        { errors: [{ message: 'missing auth token' }] }
+    );
+};
+
+// Update a User by the id in the request
+exports.update = (req, res) => {
+  
+};
+
+// Delete a User with the specified id in the request
+exports.delete = (req, res) => {
+  
+};
+
+// Delete all Users from the database.
+exports.deleteAll = (req, res) => {
+  
+};
 
 /* Login Route
 ========================================================= */
-router.post('/login', async (req, res) => {
+exports.login = async (req, res) => {
     const { username, password } = req.body;
 
     // if the username / password is missing, we use status code 400
@@ -58,11 +101,11 @@ router.post('/login', async (req, res) => {
         return res.status(400).send('invalid username or password');
     }
 
-});
+};
 
 /* Logout Route
 ========================================================= */
-router.delete('/logout', async (req, res) => {
+exports.logout = async (req, res) => {
 
     // because the logout request needs to be send with
     // authorization we should have access to the user
@@ -85,18 +128,4 @@ router.delete('/logout', async (req, res) => {
     return res.status(400).send(
         { errors: [{ message: 'not authenticated' }] }
     );
-});
-
-/* Me Route - get the currently logged in user
-========================================================= */
-router.get('/me', (req, res) => {
-    if (req.user) {
-        return res.send(req.user);
-    }
-    res.status(404).send(
-        { errors: [{ message: 'missing auth token' }] }
-    );
-});
-
-// export the router so we can pass the routes to our server
-module.exports = router;
+};
