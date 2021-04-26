@@ -36,17 +36,19 @@ export default function Register() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log("YOU have submitted the form");
     // upon form submit, get email and login values
     user.email = email;
     user.password = password;
     user.publisher = isPublisher;
     console.log(user);
     // then submit those values to backend to check against user database
-    UserDataService.register(user);
-    // store the user in localStorage
-    localStorage.setItem('user', JSON.stringify(user));
-    history.push('/');
+    UserDataService.register(user)
+    .then(function success(res) {
+      localStorage.setItem('user', JSON.stringify(res.data.user));
+      history.push('/');
+    }, function error(err) {
+      return err;
+    });
   }
 
   return (

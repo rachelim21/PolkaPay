@@ -1,35 +1,35 @@
 import http from "../http-common";
 
 class UserDataService {
-  getAll() {
+  async getAll() {
     return http.get("/users");
   }
 
-  get(id) {
+  async get(id) {
     return http.get(`/users/${id}`);
   }
 
-  login(data) {
+  async login(data) {
     return http.post("/login", data);
   }
 
-  register(data) {
-    return http.post("/users", data);
+  async register(data) {
+    return http.post("/users", data)
   }
 
-  update(id, data) {
+  async update(id, data) {
     return http.put(`/users/${id}`, data);
   }
 
-  delete(id) {
+  async delete(id) {
     return http.delete(`/users/${id}`);
   }
 
-  deleteAll() {
+  async deleteAll() {
     return http.delete(`/users`);
   }
 
-  findByTitle(title) {
+  async findByTitle(title) {
     return http.get(`/users?title=${title}`);
   }
 }

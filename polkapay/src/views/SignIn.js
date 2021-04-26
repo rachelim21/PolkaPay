@@ -30,21 +30,22 @@ export default function Login() {
   }, []);
 
   function validateForm() {
-    return email.length > 0 && password.length > 0;
+    return email.length > 0 && password.length > 5;
   }
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log("YOU have submitted the form");
     // upon form submit, get email and login values
     user.email = email;
     user.password = password;
     console.log(user);
     // then submit those values to backend to check against user database
-    UserDataService.login(user);
-    // store the user in localStorage
-    localStorage.setItem('user', JSON.stringify(user));
-    history.push('/');
+    UserDataService.login(user).then(function success(res) {
+      localStorage.setItem('user', JSON.stringify(res.data.user));
+      history.push('/');
+    }, function error(err) {
+      return err;
+    });
   }
 
   return (
