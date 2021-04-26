@@ -89,6 +89,17 @@ To get a local copy up on your own computer and running follow these simple step
     npm i @brainhubeu/react-carousel
     yarn start
     ```
+3. Run the Node server
+    ```sh
+    cd polkapay-server
+    npm install
+    yarn start
+    ```
+4. Run the PostgreSQL database
+    ```sh
+    cd polkapay-server
+    psql -d testdb
+    ```
 
 
 
