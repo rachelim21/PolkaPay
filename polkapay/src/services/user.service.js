@@ -10,7 +10,11 @@ class UserDataService {
   }
 
   async login(data) {
-    return http.post("/login", data);
+    return http.post("/users/login", data);
+  }
+
+  async logout(data) {
+    return http.post("/users/logout", data);
   }
 
   async register(data) {

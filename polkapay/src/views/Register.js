@@ -26,7 +26,7 @@ export default function Register() {
       console.log("You are already logged in!");
       console.log(loggedInUser);
       setUser(JSON.parse(loggedInUser));
-      history.push('/');
+      history.go('/');
     }
   }, []);
 
@@ -45,6 +45,7 @@ export default function Register() {
     UserDataService.register(user)
     .then(function success(res) {
       localStorage.setItem('user', JSON.stringify(res.data.user));
+      localStorage.setItem('authToken', JSON.stringify(res.data.authToken));
       history.push('/');
     }, function error(err) {
       return err;
@@ -88,7 +89,7 @@ export default function Register() {
                   type="checkbox" 
                   label="I am a news publisher and would like to create a publisher account."
                   value={isPublisher}
-                  onChange={(e) => setIsPublisher(e.target.value)} />
+                  onChange={(e) => setIsPublisher(!isPublisher)} />
               </Form.Group>
               <Button block size="lg" type="submit" disabled={!validateForm()} >
                 Register

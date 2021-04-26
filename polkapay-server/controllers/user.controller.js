@@ -83,25 +83,22 @@ exports.deleteAll = (req, res) => {
 /* Login Route
 ========================================================= */
 exports.login = async (req, res) => {
-    const { username, password } = req.body;
+    const { email, password } = req.body;
 
     // if the username / password is missing, we use status code 400
     // indicating a bad request was made and send back a message
-    if (!username || !password) {
+    if (!email || !password) {
         return res.status(400).send(
-        'Request missing username or password param'
+        'Request missing email or password param'
         );
     }
 
     try {
-        let user = await User.authenticate(username, password)
-
-        user = await user.authorize();
-
+        let user = await User.authenticate(email, password)
         return res.json(user);
-
     } catch (err) {
-        return res.status(400).send('invalid username or password');
+        console.log(err);
+        return res.status(400).send('invalid email or password');
     }
 
 };
@@ -114,14 +111,15 @@ exports.logout = async (req, res) => {
     // authorization we should have access to the user
     // on the req object, so we will try to find it and
     // call the model method logout
-    const { user, cookies: { auth_token: authToken } } = req
+    const { user, authToken } = req.body
 
     // we only want to attempt a logout if the user is
     // present in the req object, meaning it already
     // passed the authentication middleware. There is no reason
     // the authToken should be missing at this point, check anyway
     if (user && authToken) {
-        await req.user.logout(authToken);
+        let thisUser = await User.findByPk(user.id);
+        await thisUser.logout(authToken);
         return res.status(204).send()
     }
 

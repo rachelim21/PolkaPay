@@ -9,29 +9,28 @@ import { Container, Row, Col } from "react-bootstrap";
 
 export default function Register() {
   const history = useHistory();
-  const defaultUser = {
-    email: null,
-    password: null,
-    publisher: false,
-  };
-  const [user, setUser] = useState(defaultUser);
 
   // check if user logged in
   useEffect(() => {
-    const loggedInUser = localStorage.getItem("user");
-    if (loggedInUser) {
-      console.log(loggedInUser);
-      setUser(JSON.parse(loggedInUser));
-      localStorage.clear();
+    const { user, authToken } = localStorage;
+    if (user) {
+      console.log(user);
+      UserDataService.logout({user: JSON.parse(user), authToken: JSON.parse(authToken)})
+      .then(function success(res) {
+        localStorage.clear();
+        history.go('/');
+      }, function error(err) {
+        return err;
+      });
     } else {
       console.log("You are already logged out!");
+      history.push('/');
     }
-    history.push('/');
   }, []);
 
   return (
     <Container>
-      <Row>
+      <Row className="mt-5">
         <Col md={3}></Col>
         <Col md={6}>
           <div className="Login">

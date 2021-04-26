@@ -28,9 +28,9 @@ module.exports = (sequelize, Sequelize) => {
   // This is a class method, it is not called on an individual
   // user object, but rather the class as a whole.
   // e.g. User.authenticate('user1', 'password1234')
-  User.authenticate = async function(username, password) {
+  User.authenticate = async function(email, password) {
 
-    const user = await User.findOne({ where: { username } });
+    const user = await User.findOne({ where: { email } });
 
     // bcrypt is a one-way hashing algorithm that allows us to 
     // store strings on the database rather than the raw
@@ -45,7 +45,7 @@ module.exports = (sequelize, Sequelize) => {
   // in order to define an instance method, we have to access
   // the User model prototype. This can be found in the
   // sequelize documentation
-  User.prototype.authorize = async function () {
+  User.prototype.authorize = async function() {
     const { AuthToken } = sequelize.models;
     const user = this
 
@@ -63,7 +63,7 @@ module.exports = (sequelize, Sequelize) => {
 
   User.prototype.logout = async function (token) {
     // destroy the auth token record that matches the passed token
-    sequelize.models.AuthToken.destroy({ where: { token } });
+    sequelize.models.AuthToken.destroy({ where: { id: token.id } });
   };
   
   return User;

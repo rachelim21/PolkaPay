@@ -40,9 +40,11 @@ export default function Login() {
     user.password = password;
     console.log(user);
     // then submit those values to backend to check against user database
-    UserDataService.login(user).then(function success(res) {
+    UserDataService.login(user)
+    .then(function success(res) {
       localStorage.setItem('user', JSON.stringify(res.data.user));
-      history.push('/');
+      localStorage.setItem('authToken', JSON.stringify(res.data.authToken));
+      history.go('/');
     }, function error(err) {
       return err;
     });
