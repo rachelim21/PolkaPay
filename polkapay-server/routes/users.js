@@ -6,6 +6,9 @@ const users = require("../controllers/user.controller.js");
 // Create a new User
 router.post("/", users.create);
 
+// Publish an article
+router.post("/publish", users.publish);
+
 // Purchase an article
 router.post("/purchase", users.purchase);
 

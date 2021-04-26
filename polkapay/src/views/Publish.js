@@ -11,8 +11,8 @@ export default function Publish() {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [link, setLink] = useState("");
-  const [cost, setCost] = useState(null);
-  const [publishedAt, setPublishedAt] = useState(null);
+  const [cost, setCost] = useState(1);
+  const [publishedAt, setPublishedAt] = useState("");
   const history = useHistory();
   const defaultUser = {
     email: null,
@@ -28,11 +28,13 @@ export default function Publish() {
       console.log("You are already logged in!");
       console.log(loggedInUser);
       setUser(JSON.parse(loggedInUser));
+    } else {
+        history.push('/');
     }
   }, []);
 
   function validateForm() {
-    return title.length > 0 && link.length > 0 && cost != null && publishedAt != null;
+    return title.length > 0 && link.length > 0 && author.length > 0 && publishedAt.length > 0;
   }
 
   function handleSubmit(event) {
@@ -46,7 +48,6 @@ export default function Publish() {
     console.log(article);
     UserDataService.publish({user, article})
     .then(function success(res) {
-      localStorage.setItem('user', JSON.stringify(res.data.user));
       history.push('/');
     }, function error(err) {
       return err;
@@ -99,7 +100,7 @@ export default function Publish() {
                 <Form.Label>Cost</Form.Label>
                 <Form.Control 
                     as="select"
-                    value={cost}
+                    selected={cost}
                     onChange={(e) => setCost(e.target.value)}>
                     <option>1</option>
                     <option>2</option>

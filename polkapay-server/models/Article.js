@@ -8,6 +8,7 @@ module.exports = (sequelize, Sequelize) => {
     },
     author: {
       type: Sequelize.STRING,
+      allowNull: false
     },
     link: {
       type: Sequelize.STRING,

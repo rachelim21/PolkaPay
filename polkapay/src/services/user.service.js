@@ -21,6 +21,18 @@ class UserDataService {
     return http.post("/users", data)
   }
 
+  async publish(data) {
+    return http.post("/users/publish", data)
+  }
+
+  async purchase(data) {
+    return http.post("/users/purchase", data)
+  }
+
+  async register(data) {
+    return http.post("/users", data)
+  }
+
   async update(id, data) {
     return http.put(`/users/${id}`, data);
   }

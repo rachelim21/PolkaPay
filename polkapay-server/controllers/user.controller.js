@@ -46,7 +46,7 @@ exports.publish = async (req, res) => {
     const { user, article } = req.body
 
     try {
-        let currentUser = await User.authenticate(user.email, user.password)
+        let currentUser = await User.findByPk(user.id)
         let data = await currentUser.publish(article);
         return res.json(data);
       } catch(err) {
@@ -63,7 +63,7 @@ exports.purchase = async (req, res) => {
     const { user, article } = req.body
 
     try {
-        let currentUser = await User.authenticate(user.email, user.password)
+        let currentUser = await User.findByPk(user.id)
         let data = await currentUser.purchase(article);
         return res.json(data);
     } catch(err) {
