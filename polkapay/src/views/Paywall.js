@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import UserDataService from "../services/user.service";
 
 // import styles
 import '../assets/Paywall.css';
@@ -10,7 +12,39 @@ import Col from 'react-bootstrap/Col';
 import ListGroup from 'react-bootstrap/ListGroup';
 import PriceCard from '../components/PriceCard';
 
-const Paywall = () => {
+export default function Paywall() {
+  const history = useHistory();
+  const defaultUser = {
+    email: null,
+    password: null,
+    publisher: null,
+  };
+  const [user, setUser] = useState(defaultUser);
+  const [articleId, setArticleId] = useState(null);
+  
+  // check if user logged in
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("user");
+    if (loggedInUser) {
+      console.log("You are already logged in!");
+      console.log(loggedInUser);
+      setUser(JSON.parse(loggedInUser));
+      
+      setArticleId(history.location.pathname.split("/")[2]);
+    } else {
+      localStorage.clear();
+      history.go('/');
+    }
+  }, []);
+
+  function purchase() {
+    UserDataService.purchase({user, articleId})
+    .then(function success(res) {
+      history.push('/');
+    }, function error(err) {
+      return err;
+    });
+  }
 
   return (
     <Container className="paywall-container">
@@ -25,9 +59,11 @@ const Paywall = () => {
       </Container>
       <Container className="paywall-content text-center">
           <h6>Support your big and local publishers. Buy this article through Polka Pay:</h6>
-          <Row className="justify-content-md-center"><Col xs lg="6"><PriceCard heading="Best Value" title="Single Article"  actual="$0.99" button="Unlock Article through PolkaPay"  color=""></PriceCard></Col></Row>
-          
-          
+          <Row className="justify-content-md-center">
+            <Col xs lg="6">
+              <PriceCard heading="Best Value" title="Single Article"  actual="$0.99" button="Unlock Article through PolkaPay" color="" purchase={purchase}></PriceCard>
+            </Col>
+          </Row>
           <h6>Or purchase a monthly subscription: Save money. No hassle. Cancel anytime.</h6>
         <Row>
           <Col>
@@ -68,5 +104,3 @@ const Paywall = () => {
     </Container>
   );
 }
-
-export default Paywall;

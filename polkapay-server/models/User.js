@@ -40,11 +40,11 @@ module.exports = (sequelize, Sequelize) => {
     return { user, thisArticle }
   };
 
-  User.prototype.purchase = async function(article) {
+  User.prototype.purchase = async function(articleId) {
     const { Article } = sequelize.models;
     const user = this;
 
-    const thisArticle = await Article.findOne({where: { id: article.id }});
+    const thisArticle = await Article.findByPk(articleId);
     
     await user.addArticle(thisArticle, { through: { role: 'purchased' }});
     user.update({ amount: user.amount - thisArticle.cost })

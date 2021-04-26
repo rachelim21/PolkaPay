@@ -60,11 +60,11 @@ exports.purchase = async (req, res) => {
     console.log("PURCHASING ARTICLE")
     console.log(req.body)
 
-    const { user, article } = req.body
+    const { user, articleId } = req.body
 
     try {
         let currentUser = await User.findByPk(user.id)
-        let data = await currentUser.purchase(article);
+        let data = await currentUser.purchase(articleId);
         return res.json(data);
     } catch(err) {
         console.log(err);

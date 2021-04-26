@@ -63,8 +63,8 @@ export default function Reader() {
     return month + "/" + day + "/" + year;
   }
 
-  function goToPaywall() {
-    history.push('/paywall');
+  function goToPaywall(articleId) {
+    history.push('/paywall/'+articleId);
   }
 
   return (

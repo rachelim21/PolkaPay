@@ -13,16 +13,6 @@ import UserDataService from '../services/user.service'
 function PriceCard(props) {
     const history = useHistory();
 
-    function charge(){
-        console.log("buying article");
-        const userId = localStorage.getItem('user');
-        const amount = parseFloat(localStorage.getItem('amount'));
-        const new_amount = amount-0.10;
-        axios.put(`/users/${userId}`, amount-0.10);
-        localStorage.setItem('amount',new_amount.toString());
-        // window.href("/my route")
-        //history.push("https://www.nytimes.com/2021/04/03/health/coronavirus-variants-vaccines.html?action=click&module=Top%20Stories&pgtype=Homepage")
-    }
     return (
         <Card className="card price-card">
             <Card.Body>
@@ -32,9 +22,7 @@ function PriceCard(props) {
                     <p><span className="original-price">{props.original}</span>
                     <span className="actual-price">{props.actual}</span></p>
                 </Card.Text>
-                <Button variant="light" onClick={charge} href="https://www.nytimes.com/2021/04/03/health/coronavirus-variants-vaccines.html?action=click&module=Top%20Stories&pgtype=Homepage" block>{props.button}</Button>
-             
-
+                <Button variant="light" onClick={props.purchase} block>{props.button}</Button>
             </Card.Body>
         </Card>
     );

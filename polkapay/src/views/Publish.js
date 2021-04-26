@@ -29,7 +29,8 @@ export default function Publish() {
       console.log(loggedInUser);
       setUser(JSON.parse(loggedInUser));
     } else {
-        history.push('/');
+      localStorage.clear();
+      history.go('/');
     }
   }, []);
 

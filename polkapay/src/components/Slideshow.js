@@ -45,7 +45,7 @@ export default function Slideshow(props) {
       draggable={false}
       animationSpeed={500}
       arrows >
-        <Button variant="light" onClick={props.goToPaywall}><img src={image1} /></Button>
+        <Button variant="light" onClick={() => props.goToPaywall(1)}><img src={image1} /></Button>
         <Button variant="light" onClick={props.goToPaywall}><img src={image2} /></Button>
         <Button variant="light" onClick={props.goToPaywall}><img src={image3} /></Button>
         <Button variant="light" onClick={props.goToPaywall}><img src={image4} /></Button>
