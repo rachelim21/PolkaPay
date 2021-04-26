@@ -61,9 +61,9 @@ app.use(function(err, req, res, next) {
 
 const db = require("./models");
 // comment lines below to preserve SQL tables upon server restart
-// db.sequelize.sync({ force: true }).then(() => {
-//   console.log("Drop and re-sync db.");
-// });
+db.sequelize.sync({ force: true }).then(() => {
+  console.log("Drop and re-sync db.");
+});
 
 // simple route
 app.get("/", (req, res) => {

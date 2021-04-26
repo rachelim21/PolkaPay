@@ -117,110 +117,35 @@ export default function Reader() {
               <Table responsive bordered hover >
                 <thead>
                   <tr>
-                    
+                    <th></th>
                     <th>Article</th>
-                    <th>Publish Date</th>
+                    <th>Published Date</th>
                     <th>Author</th>
                     <th>Publisher</th>
-                    <th>Views</th>
+                    <th>Cost</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td><a href ="https://www.nytimes.com/2021/04/03/health/coronavirus-variants-vaccines.html?action=click&module=Top%20Stories&pgtype=Homepage">Covid-19: About a Third of U.S. Adults Have Received at Least One Dose of a Vaccine</a></td>
-                    <td>3/27/21</td>
-                    <td>Sameer Yasir</td>
-                    <td>The New York Times </td>
-                    <td>12</td>
-                  </tr>
-                  <tr>
-                    <td><a href="https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html">Tesla will accept Bitcoin as payment, Elon Musk says</a></td>
-                    {//https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html 
-                    }
-                    <td>3/24/21</td>
-                    <td>Ephrat Livni</td>
-                    <td>The New York Times</td>
-                    <td>10</td>
-                  </tr>
-                  <tr>
-                    <td><a href="https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html">Tesla will accept Bitcoin as payment, Elon Musk says</a></td>
-                    {//<a href="https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html">
-                    }
-                    <td>3/24/21</td>
-                    <td>Ephrat Livni</td>
-                    <td>The New York Times</td>
-                    <td>8</td>
-                  </tr>
-                  <tr>
-                    <td><a href="https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html">Tesla will accept Bitcoin as payment, Elon Musk says</a></td>
-                    {//https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html 
-                    }
-                    <td>3/24/21</td>
-                    <td>Ephrat Livni</td>
-                    <td>The New York Times</td>
-                    <td>6</td>
-                  </tr>
-                  <tr>
-                    <td><a href="https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html">Tesla will accept Bitcoin as payment, Elon Musk says</a></td>
-                    {//https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html 
-                    }
-                    <td>3/24/21</td>
-                    <td>Ephrat Livni</td>
-                    <td>The New York Times</td>
-                    <td>6</td>
-                  </tr>
-                  <tr>
-                    <td><a href="https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html">Tesla will accept Bitcoin as payment, Elon Musk says</a></td>
-                    {//https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html 
-                    }
-                    <td>3/24/21</td>
-                    <td>Ephrat Livni</td>
-                    <td>The New York Times</td>
-                    <td>5</td>
-                  </tr>
-                  <tr>
-                    <td><a href="https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html">Tesla will accept Bitcoin as payment, Elon Musk says</a></td>
-                    {//https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html 
-                    }
-                    <td>3/24/21</td>
-                    <td>Ephrat Livni</td>
-                    <td>The New York Times</td>
-                    <td>4</td>
-                  </tr>
-                  <tr>
-                    <td><a href="https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html">Tesla will accept Bitcoin as payment, Elon Musk says</a></td>
-                    {//https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html 
-                    }
-                    <td>3/24/21</td>
-                    <td>Ephrat Livni</td>
-                    <td>The New York Times</td>
-                    <td>3</td>
-                  </tr>
-                  <tr>
-                    <td><a href="https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html">Tesla will accept Bitcoin as payment, Elon Musk says</a></td>
-                    {//https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html 
-                    }
-                    <td>3/24/21</td>
-                    <td>Ephrat Livni</td>
-                    <td>The New York Times</td>
-                    <td>2</td>
-                  </tr>
-                  <tr>          
-                    <td><a href="https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html">Tesla will accept Bitcoin as payment, Elon Musk says</a></td>
-                    {//https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html 
-                    }
-                    <td>3/24/21</td>
-                    <td>Ephrat Livni</td>
-                    <td>The New York Times</td>
-                    <td>2</td>
-                  </tr>
+                {
+                  purchasedArticles.map(function(article, index) {
+                    return (
+                      <tr>
+                        <td>{ index + 1 }</td>
+                        <td><a href={article.link}>{ article.title }</a></td>
+                        <td>{ formatDate(article.publishedAt) }</td>
+                        <td>{ article.author }</td>
+                        <td>{ article.author }</td>
+                        <td>${ (article.cost/10).toFixed(2) }</td>
+                      </tr>
+                    )
+                  })
+                }
                 </tbody>
               </Table>
             ) : (
               <Table responsive bordered hover >
                 <thead>
                   <tr>
-                    
                     <th>Article</th>
                     <th>Publish Date</th>
                     <th>Author</th>
@@ -229,94 +154,20 @@ export default function Reader() {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td><a href ="https://www.nytimes.com/2021/04/03/health/coronavirus-variants-vaccines.html?action=click&module=Top%20Stories&pgtype=Homepage">Covid-19: About a Third of U.S. Adults Have Received at Least One Dose of a Vaccine</a></td>
-                    <td>3/27/21</td>
-                    <td>Sameer Yasir</td>
-                    <td>The New York Times </td>
-                    <td>12</td>
-                  </tr>
-                  <tr>
-                    <td><a href="https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html">Tesla will accept Bitcoin as payment, Elon Musk says</a></td>
-                    {//https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html 
-                    }
-                    <td>3/24/21</td>
-                    <td>Ephrat Livni</td>
-                    <td>The New York Times</td>
-                    <td>10</td>
-                  </tr>
-                  <tr>
-                    <td><a href="https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html">Tesla will accept Bitcoin as payment, Elon Musk says</a></td>
-                    {//<a href="https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html">
-                    }
-                    <td>3/24/21</td>
-                    <td>Ephrat Livni</td>
-                    <td>The New York Times</td>
-                    <td>8</td>
-                  </tr>
-                  <tr>
-                    <td><a href="https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html">Tesla will accept Bitcoin as payment, Elon Musk says</a></td>
-                    {//https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html 
-                    }
-                    <td>3/24/21</td>
-                    <td>Ephrat Livni</td>
-                    <td>The New York Times</td>
-                    <td>6</td>
-                  </tr>
-                  <tr>
-                    <td><a href="https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html">Tesla will accept Bitcoin as payment, Elon Musk says</a></td>
-                    {//https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html 
-                    }
-                    <td>3/24/21</td>
-                    <td>Ephrat Livni</td>
-                    <td>The New York Times</td>
-                    <td>6</td>
-                  </tr>
-                  <tr>
-                    <td><a href="https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html">Tesla will accept Bitcoin as payment, Elon Musk says</a></td>
-                    {//https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html 
-                    }
-                    <td>3/24/21</td>
-                    <td>Ephrat Livni</td>
-                    <td>The New York Times</td>
-                    <td>5</td>
-                  </tr>
-                  <tr>
-                    <td><a href="https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html">Tesla will accept Bitcoin as payment, Elon Musk says</a></td>
-                    {//https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html 
-                    }
-                    <td>3/24/21</td>
-                    <td>Ephrat Livni</td>
-                    <td>The New York Times</td>
-                    <td>4</td>
-                  </tr>
-                  <tr>
-                    <td><a href="https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html">Tesla will accept Bitcoin as payment, Elon Musk says</a></td>
-                    {//https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html 
-                    }
-                    <td>3/24/21</td>
-                    <td>Ephrat Livni</td>
-                    <td>The New York Times</td>
-                    <td>3</td>
-                  </tr>
-                  <tr>
-                    <td><a href="https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html">Tesla will accept Bitcoin as payment, Elon Musk says</a></td>
-                    {//https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html 
-                    }
-                    <td>3/24/21</td>
-                    <td>Ephrat Livni</td>
-                    <td>The New York Times</td>
-                    <td>2</td>
-                  </tr>
-                  <tr>          
-                    <td><a href="https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html">Tesla will accept Bitcoin as payment, Elon Musk says</a></td>
-                    {//https://www.nytimes.com/2021/03/24/business/elon-musk-tesla-bitcoin.html 
-                    }
-                    <td>3/24/21</td>
-                    <td>Ephrat Livni</td>
-                    <td>The New York Times</td>
-                    <td>2</td>
-                  </tr>
+                {
+                  purchasedArticles.map(function(article, index) {
+                    return (
+                      <tr>
+                        <td>{ index + 1 }</td>
+                        <td><a href={article.link}>{ article.title }</a></td>
+                        <td>{ formatDate(article.publishedAt) }</td>
+                        <td>{ article.author }</td>
+                        <td>{ article.author }</td>
+                        <td>${ (article.cost/10).toFixed(2) }</td>
+                      </tr>
+                    )
+                  })
+                }
                 </tbody>
               </Table>
             )

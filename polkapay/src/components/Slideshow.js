@@ -46,10 +46,10 @@ export default function Slideshow(props) {
       animationSpeed={500}
       arrows >
         <Button variant="light" onClick={() => props.goToPaywall(1)}><img src={image1} /></Button>
-        <Button variant="light" onClick={props.goToPaywall}><img src={image2} /></Button>
-        <Button variant="light" onClick={props.goToPaywall}><img src={image3} /></Button>
-        <Button variant="light" onClick={props.goToPaywall}><img src={image4} /></Button>
-        <Button variant="light" onClick={props.goToPaywall}><img src={image5} /></Button>
+        <Button variant="light" onClick={() => props.goToPaywall(2)}><img src={image2} /></Button>
+        <Button variant="light" onClick={() => props.goToPaywall(3)}><img src={image3} /></Button>
+        <Button variant="light" onClick={() => props.goToPaywall(4)}><img src={image4} /></Button>
+        <Button variant="light" onClick={() => props.goToPaywall(5)}><img src={image5} /></Button>
       </Carousel>
       <Dots value={value} onChange={onChange} number={5} />
 
