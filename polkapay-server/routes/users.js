@@ -12,6 +12,12 @@ router.post("/publish", users.publish);
 // Purchase an article
 router.post("/purchase", users.purchase);
 
+// Retrieve all published articles from User
+router.get("/:id/published", users.findPublished);
+
+// Retrieve all purchased articles by User
+router.get("/:id/purchased", users.findPurchased);
+
 // Login a User
 router.post("/login", users.login);
 

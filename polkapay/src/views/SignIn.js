@@ -52,7 +52,7 @@ export default function Login() {
 
   return (
     <Container>
-      <Row className="mt-5">
+      <Row className="mt-5 mb-5">
         <Col md={3}></Col>
         <Col md={6}>
           <div className="Login">

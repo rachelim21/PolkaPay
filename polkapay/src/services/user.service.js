@@ -29,6 +29,14 @@ class UserDataService {
     return http.post("/users/purchase", data)
   }
 
+  async getPublishedArticles(id) {
+    return http.get(`/users/${id}/published`);
+  }
+
+  async getPurchasedArticles(id) {
+    return http.get(`/users/${id}/purchased`);
+  }
+
   async register(data) {
     return http.post("/users", data)
   }

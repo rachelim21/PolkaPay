@@ -72,6 +72,28 @@ exports.purchase = async (req, res) => {
     }
 };
 
+exports.findPublished = async (req, res) => {
+    try {
+        let currentUser = await User.findByPk(req.params.id)
+        let data = await currentUser.getArticles()
+        return res.json(data);
+    } catch(err) {
+        console.log(err);
+        return res.status(400).send(err);
+    }
+};
+
+exports.findPurchased = async (req, res) => {
+    try {
+        let currentUser = await User.findByPk(req.params.id)
+        let data = await currentUser.getArticles()
+        return res.json(data);
+    } catch(err) {
+        console.log(err);
+        return res.status(400).send(err);
+    }
+};
+
 // Retrieve all Users from the database.
 exports.findAll = (req, res) => {
   

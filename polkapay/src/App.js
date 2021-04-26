@@ -12,14 +12,11 @@ import './assets/Home.css';
 
 // import views
 import Home from './views/Home';
-import Reader from './views/Reader_Page/Reader';
+import Reader from './views/Reader';
 import Publisher from './views/Publisher';
 import Paywall from './views/Paywall';
 import Publish from './views/Publish';
 import Settings from './views/Settings';
-import Reader_Recent from './views/Reader_Page/Reader_Recent';
-import Reader_Favorite from './views/Reader_Page/Reader_Favorite';
-import Reader_Free from './views/Reader_Page/Reader_Free';
 import Register from './views/Register';
 import SignIn from './views/SignIn';
 import Logout from './views/Logout';
@@ -91,7 +88,6 @@ function App() {
               user.email ? (
                 <Navbar.Collapse id="basic-navbar-nav">
                   <Nav className="ml-auto">
-                      <Nav.Link href="/paywall">Paywall</Nav.Link>
                       <Dropdown title="Profile" id="basic-nav-dropdown" alignRight>
                           <Dropdown.Toggle variant="outline-secondary" id="dropdown-basic">
                               Profile
@@ -134,15 +130,6 @@ function App() {
         </Route>
         <Route path="/publish">
           <Publish />
-        </Route>
-        <Route path="/reader_recent">
-          <Reader_Recent />
-        </Route>
-        <Route path="/reader_favorite">
-          <Reader_Favorite />
-        </Route>
-        <Route path="/reader_free">
-          <Reader_Free />
         </Route>
         <Route path="/SignIn">
           <SignIn />
