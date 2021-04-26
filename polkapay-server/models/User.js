@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 
 module.exports = (sequelize, Sequelize) => {
-  const User = sequelize.define("user", {
+  const User = sequelize.define("User", {
     email: {
       type: Sequelize.STRING,
       unique: true,
@@ -20,7 +20,7 @@ module.exports = (sequelize, Sequelize) => {
       defaultValue: 10,
     },
   });
-
+  
   User.associate = function ({ AuthToken }) {
     User.hasMany(AuthToken);
   };

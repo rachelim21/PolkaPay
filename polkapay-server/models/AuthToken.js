@@ -4,9 +4,9 @@ module.exports = (sequelize, Sequelize) => {
         token: Sequelize.STRING
     }, {});
 
-    AuthToken.associate = function(models) {
-        AuthToken.belongsTo(models.User)
-    };
+    // AuthToken.associate = function({ User }) {
+    //     AuthToken.belongsTo(User)
+    // };
 
     // generates a random 15 character token and
     // associates it with a user

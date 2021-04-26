@@ -1,6 +1,12 @@
-const dbConfig = require("../config/db.config.js");
+// require the node packages
+var fs        = require('fs');
+var path      = require('path');
+var Sequelize = require('sequelize');
+var dbConfig  = require("../config/db.config.js");
 
-const Sequelize = require("sequelize");
+// set a reference to this file's name so we can exclude it later
+var basename  = path.basename(__filename);
+
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   host: dbConfig.HOST,
   dialect: dbConfig.dialect,
@@ -19,13 +25,23 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.users = require("./user.model.js")(sequelize, Sequelize);
-db.AuthTokens = require("./auth_token.model.js")(sequelize, Sequelize);
+// db.users = require("./User.js")(sequelize, Sequelize);
+// db.AuthTokens = require("./AuthToken.js")(sequelize, Sequelize);
 
-// Object.keys(db).forEach(modelName => {
-//   if (db[modelName].associate) {
-//     db[modelName].associate(db);
-//   }
-// });
+fs
+  .readdirSync(__dirname)
+  .filter(file => {
+    return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
+  })
+  .forEach(file => {
+    var model = require(path.join(__dirname, file))(sequelize, Sequelize) // sequelize['import'](path.join(__dirname, file));
+    db[model.name] = model;
+  });
+
+Object.keys(db).forEach(modelName => {
+  if (db[modelName].associate) {
+    db[modelName].associate(db);
+  }
+});
 
 module.exports = db;
