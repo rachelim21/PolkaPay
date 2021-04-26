@@ -12,8 +12,9 @@ module.exports = (sequelize, Sequelize) => {
       allowNull: false
     },
     publisher: {
-      type: Sequelize.BOOLEAN,
-      allowNull: false
+      type: Sequelize.STRING,
+      unique: true,
+      allowNull: true
     },
     amount: {
       type: Sequelize.BIGINT,
@@ -21,8 +22,34 @@ module.exports = (sequelize, Sequelize) => {
     },
   });
   
-  User.associate = function ({ AuthToken }) {
+  User.associate = function ({ AuthToken, Article, UserArticle }) {
     User.hasMany(AuthToken);
+    User.belongsToMany(Article, { through: UserArticle });
+  };
+
+  User.prototype.publish = async function(article) {
+    const { Article } = sequelize.models;
+    const user = this;
+
+    let thisArticle = await Article.create(
+      Object.assign(article)
+    );
+    
+    await user.addArticle(thisArticle, { through: { role: 'published' }});
+
+    return { user, thisArticle }
+  };
+
+  User.prototype.purchase = async function(article) {
+    const { Article } = sequelize.models;
+    const user = this;
+
+    const thisArticle = await Article.findOne({where: { id: article.id }});
+    
+    await user.addArticle(thisArticle, { through: { role: 'purchased' }});
+    user.update({ amount: user.amount - thisArticle.cost })
+
+    return { user, thisArticle }
   };
 
   // This is a class method, it is not called on an individual
@@ -47,7 +74,7 @@ module.exports = (sequelize, Sequelize) => {
   // sequelize documentation
   User.prototype.authorize = async function() {
     const { AuthToken } = sequelize.models;
-    const user = this
+    const user = this;
 
     // create a new auth token associated to 'this' user
     // by calling the AuthToken class method we created earlier

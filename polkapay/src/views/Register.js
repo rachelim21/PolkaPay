@@ -10,12 +10,13 @@ import { Container, Row, Col } from "react-bootstrap";
 export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [publisher, setPublisher] = useState("");
   const [isPublisher, setIsPublisher] = useState(false);
   const history = useHistory();
   const defaultUser = {
     email: null,
     password: null,
-    publisher: false,
+    publisher: null,
   };
   const [user, setUser] = useState(defaultUser);
 
@@ -31,7 +32,7 @@ export default function Register() {
   }, []);
 
   function validateForm() {
-    return email.length > 0 && password.length > 0;
+    return email.length > 0 && password.length > 0 && !(isPublisher && publisher.length == 0);
   }
 
   function handleSubmit(event) {
@@ -39,7 +40,7 @@ export default function Register() {
     // upon form submit, get email and login values
     user.email = email;
     user.password = password;
-    user.publisher = isPublisher;
+    user.publisher = isPublisher ? publisher : null;
     console.log(user);
     // then submit those values to backend to check against user database
     UserDataService.register(user)
@@ -84,13 +85,27 @@ export default function Register() {
                 </Form.Text>
               </Form.Group>
 
-              <Form.Group controlId="formBasicCheckbox">
+              <Form.Group controlId="isPublisher">
                 <Form.Check 
                   type="checkbox" 
                   label="I am a news publisher and would like to create a publisher account."
                   value={isPublisher}
                   onChange={(e) => setIsPublisher(!isPublisher)} />
               </Form.Group>
+              {
+                isPublisher && 
+                <Form.Group size="lg" controlId="publisher">
+                  <Form.Label>Publisher Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    value={publisher}
+                    onChange={(e) => setPublisher(e.target.value)}
+                  />
+                  <Form.Text className="text-muted">
+                    Please enter the name of your publisher, case-sensitive. Ex: <em>The New York Times</em>
+                  </Form.Text>
+                </Form.Group>
+              }
               <Button block size="lg" type="submit" disabled={!validateForm()} >
                 Register
               </Button>

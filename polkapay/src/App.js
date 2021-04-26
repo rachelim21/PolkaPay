@@ -15,6 +15,7 @@ import Home from './views/Home';
 import Reader from './views/Reader_Page/Reader';
 import Publisher from './views/Publisher';
 import Paywall from './views/Paywall';
+import Publish from './views/Publish';
 import Settings from './views/Settings';
 import Reader_Recent from './views/Reader_Page/Reader_Recent';
 import Reader_Favorite from './views/Reader_Page/Reader_Favorite';
@@ -35,7 +36,7 @@ function App() {
   const defaultUser = {
     email: null,
     password: null,
-    publisher: false,
+    publisher: null,
   };
   const [user, setUser] = useState(defaultUser);
 
@@ -70,10 +71,10 @@ function App() {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         {
-          user.email ? (
+          user.publisher ? (
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="ml-auto">
-                  <Nav.Link href="/paywall">Paywall</Nav.Link>
+                  <Nav.Link href="/publish">Publish</Nav.Link>
                   <Dropdown title="Profile" id="basic-nav-dropdown" alignRight>
                       <Dropdown.Toggle variant="outline-secondary" id="dropdown-basic">
                           Profile
@@ -87,24 +88,42 @@ function App() {
               </Nav>
             </Navbar.Collapse>
           ) : (
-            <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="ml-auto">
-                  <Nav.Link href="/features">Features</Nav.Link>
-                  <Nav.Link href="/pricing">Pricing</Nav.Link>
-                  <Nav.Link href="https://github.com/rachelim21/PolkaPay">Documentation</Nav.Link>
-                  <Dropdown title="Login" id="basic-nav-dropdown" alignRight>
-                      <Dropdown.Toggle variant="outline-secondary" id="dropdown-basic">
-                          Login
-                      </Dropdown.Toggle>
-                      <Dropdown.Menu>
-                          <Dropdown.Item href="/signin">Reader</Dropdown.Item>
-                          <Dropdown.Item href="/signin">Publisher</Dropdown.Item>
-                          <Dropdown.Divider />
-                          <Dropdown.Item href="/register">Sign Up</Dropdown.Item>
-                      </Dropdown.Menu>
-                  </Dropdown>
-              </Nav>
-            </Navbar.Collapse>
+              user.email ? (
+                <Navbar.Collapse id="basic-navbar-nav">
+                  <Nav className="ml-auto">
+                      <Nav.Link href="/paywall">Paywall</Nav.Link>
+                      <Dropdown title="Profile" id="basic-nav-dropdown" alignRight>
+                          <Dropdown.Toggle variant="outline-secondary" id="dropdown-basic">
+                              Profile
+                          </Dropdown.Toggle>
+                          <Dropdown.Menu>
+                              <Dropdown.Item href="/settings">Settings</Dropdown.Item>
+                              <Dropdown.Divider />
+                              <Dropdown.Item href="/logout">Logout</Dropdown.Item>
+                          </Dropdown.Menu>
+                      </Dropdown>
+                  </Nav>
+                </Navbar.Collapse>
+              ) : (
+                <Navbar.Collapse id="basic-navbar-nav">
+                  <Nav className="ml-auto">
+                      <Nav.Link href="/features">Features</Nav.Link>
+                      <Nav.Link href="/pricing">Pricing</Nav.Link>
+                      <Nav.Link href="https://github.com/rachelim21/PolkaPay">Documentation</Nav.Link>
+                      <Dropdown title="Login" id="basic-nav-dropdown" alignRight>
+                          <Dropdown.Toggle variant="outline-secondary" id="dropdown-basic">
+                              Login
+                          </Dropdown.Toggle>
+                          <Dropdown.Menu>
+                              <Dropdown.Item href="/signin">Reader</Dropdown.Item>
+                              <Dropdown.Item href="/signin">Publisher</Dropdown.Item>
+                              <Dropdown.Divider />
+                              <Dropdown.Item href="/register">Sign Up</Dropdown.Item>
+                          </Dropdown.Menu>
+                      </Dropdown>
+                  </Nav>
+                </Navbar.Collapse>
+              )
           )
         }
         
@@ -112,6 +131,9 @@ function App() {
       <Switch>
         <Route path="/paywall">
           <Paywall />
+        </Route>
+        <Route path="/publish">
+          <Publish />
         </Route>
         <Route path="/reader_recent">
           <Reader_Recent />

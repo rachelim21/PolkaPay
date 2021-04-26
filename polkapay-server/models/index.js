@@ -25,9 +25,6 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-// db.users = require("./User.js")(sequelize, Sequelize);
-// db.AuthTokens = require("./AuthToken.js")(sequelize, Sequelize);
-
 fs
   .readdirSync(__dirname)
   .filter(file => {
@@ -38,9 +35,9 @@ fs
     db[model.name] = model;
   });
 
-Object.keys(db).forEach(modelName => {
-  if (db[modelName].associate) {
-    db[modelName].associate(db);
+Object.keys(db.sequelize.models).forEach(modelName => {
+  if (db.sequelize.models[modelName].associate) {
+    db.sequelize.models[modelName].associate(db.sequelize.models);
   }
 });
 

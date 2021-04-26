@@ -5,7 +5,7 @@ const Op = db.Sequelize.Op;
 // grab the User model from the models folder, the sequelize
 // index.js file takes care of the exporting for us and the
 // syntax below is called destructuring, its an es6 feature
-const { User } = require('../models');
+const { User } = db;
 
 /* Register Route
 ========================================================= */
@@ -32,6 +32,40 @@ exports.create = async (req, res) => {
       // client { user, authToken }
       return res.json(data);
   
+    } catch(err) {
+        console.log(err);
+        return res.status(400).send(err);
+    }
+};
+
+// Publish an article for this User (Publisher)
+exports.publish = async (req, res) => {
+    console.log("PUBLISHING ARTICLE")
+    console.log(req.body)
+
+    const { user, article } = req.body
+
+    try {
+        let currentUser = await User.authenticate(user.email, user.password)
+        let data = await currentUser.publish(article);
+        return res.json(data);
+      } catch(err) {
+          console.log(err);
+          return res.status(400).send(err);
+      }
+};
+
+// Purchase an article for this User (Reader)
+exports.purchase = async (req, res) => {
+    console.log("PURCHASING ARTICLE")
+    console.log(req.body)
+
+    const { user, article } = req.body
+
+    try {
+        let currentUser = await User.authenticate(user.email, user.password)
+        let data = await currentUser.purchase(article);
+        return res.json(data);
     } catch(err) {
         console.log(err);
         return res.status(400).send(err);
